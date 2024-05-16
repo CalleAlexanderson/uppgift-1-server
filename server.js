@@ -260,7 +260,9 @@ app.put("/addbacktomenu", authenticateToken, async (req, res) => {
 app.post("/postreview", async (req, res) => {
     try {
         const { name, content, stars } = req.body;
-
+        if (!name || !content || !stars) {
+            return res.status(400).json({ error: "Invalid input, send name, content and stars" })
+        }
         const newReview = {
             "name": name,
             "whenMade": new Date(),
