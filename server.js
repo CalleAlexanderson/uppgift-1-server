@@ -10,6 +10,12 @@ const port = process.env.PORT || 3000;
 app.use(express.json());
 app.use(cors());
 
+mongoose.connect(process.env.DATABASE).then(() => {
+    console.log("connected to mongoDB");
+}).catch((err) => {
+    console.log("error when connecting to database: " + err);
+})
+
 const staffAcountSchema = new mongoose.Schema({
     username: {
         type: String,
@@ -120,19 +126,28 @@ const review = mongoose.model("review", reviewsSchema);
 const menuItem = mongoose.model("menuItem", menuItemSchema);
 const oldMenuItem = mongoose.model("oldMenuItem", oldMenuItemSchema);
 
+// visa menyn
+app.get("/menu", async (req, res) => {
+    try {
+        let result = await menuItem.find({});
+
+        return res.json(result);
+    } catch (err) {
+        return res.status(500).json(err);
+    }
+})
+
 //logga in, använt samma kod som i labb 4 (anpassad)
 app.post("/login", async (req, res) => {
     try {
         const { username, password } = req.body;
         if (!username || !password) {
-            return res.status(400).json({ error: "Invalid input, send accountUserName and password" })
+            return res.status(400).json({ error: "Invalid input, send username and password" })
         } else {
             //hämtar user
             const user = await staffAcount.find({ username: username });
-
-            if (user) { //om user finns kollas lösenord
+            if (user[0] != undefined) { //om user finns kollas lösenord
                 if (await bcrypt.compare(password, user[0].password)) {
-
                     //skapar en JWT
                     const payload = { username: username }
                     const token = jwt.sign(payload, process.env.JWT_SECRET_KEY, { expiresIn: '0.5h' })
@@ -142,10 +157,10 @@ app.post("/login", async (req, res) => {
                     }
                     return res.json(respone);
                 } else {
-                    return res.status(400).json({ message: "incorrect accountUserName/password" });
+                    return res.status(400).json({ message: "incorrect username/password" });
                 }
             } else {
-                return res.status(400).json({ message: "incorrect accountUserName/password" });
+                return res.status(400).json({ message: "incorrect username/password" });
             }
         }
     } catch (err) {
@@ -182,7 +197,11 @@ app.post("/addtomenu", authenticateToken, async (req, res) => {
 
 //om JWT är korrekt skickas det tillbaka länk som används på login sidan för att skicka dig vidare
 app.get("/currentmenu", authenticateToken, async (req, res) => {
-    res.json({ protectedSite: "http://localhost:1234/current_menu.html" })
+    res.json({ protectedSite: "current_menu.html" })
+})
+
+app.get("/checktoken", authenticateToken, async (req, res) => {
+    res.json({ message: "JWT is correct" })
 })
 
 //kollar om JWT är korrekt, samma kod som labb 4
@@ -191,14 +210,15 @@ function authenticateToken(req, res, next) {
     const token = authheader && authheader.split(' ')[1]; // tar bort bearer
 
     if (token == null) {
-        res.status(401).json({ message: "not authorized to see this content, pls log in first" })
+        return res.status(401).json({ message: "not authorized to see this content, pls log in first" })
     }
     jwt.verify(token, process.env.JWT_SECRET_KEY, (err) => {
         if (err) {
             return res.status(403).json({ message: "not correct JWT" })
+        } else {
+            next();
         }
     })
-    next();
 }
 
 //tar bort ett menuItem från menyn och lägger till det i oldMenuItems

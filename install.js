@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 require("dotenv").config();
+const bcrypt = require("bcrypt");
 
 const staffAcountSchema = new mongoose.Schema({
     username: {
@@ -223,23 +224,7 @@ let menuItems = [
     }
 ]
 
-let staffAcounts = [
-    {
-        "username": "Jec",
-        "password": "Password",
-        "fullname": "Calle Alexanderson"
-    },
-    {
-        "username": "Kon",
-        "password": "Password",
-        "fullname": "Julius Sköld"
-    },
-    {
-        "username": "Lars",
-        "password": "Password",
-        "fullname": "Linus Kindbom"
-    }
-]
+
 
 mongoose.connect(process.env.DATABASE).then(() => {
     console.log("connected to mongoDB");
@@ -261,6 +246,27 @@ async function resetDocuments() {
     console.log(result);
     const r = await menuItem.deleteMany({});
     console.log(r);
+
+    password = await bcrypt.hash("Password", 10);
+    console.log(password);
+
+    let staffAcounts = [
+        {
+            "username": "Jec",
+            "password": password,
+            "fullname": "Calle Alexanderson"
+        },
+        {
+            "username": "Kon",
+            "password": password,
+            "fullname": "Julius Sköld"
+        },
+        {
+            "username": "Lars",
+            "password": password,
+            "fullname": "Linus Kindbom"
+        }
+    ]
     
     staffAcount.insertMany(staffAcounts)
     menuItem.insertMany(menuItems)
