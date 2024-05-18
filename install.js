@@ -51,6 +51,61 @@ const menuItemSchema = new mongoose.Schema({
     }
 });
 
+const oldMenuItemSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true
+    },
+    description: {
+        type: String
+    },
+    cost: {
+        type: Number,
+        required: true
+    },
+    menu: {
+        type: String,
+        required: true
+    },
+    category: {
+        type: String,
+        required: true
+    },
+    restrictions: {
+        type: [String],
+        required: true
+    },
+    whoRemoved: {
+        type: String,
+        required: true
+    },
+    whenRemoved: {
+        type: Date,
+        required: true
+    }
+});
+
+const reviewsSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true
+    },
+    whenMade: {
+        type: Date,
+        required: true
+    },
+    content: {
+        type: String,
+        required: true
+    },
+    stars: {
+        type: Number,
+        required: true,
+        min: 1,
+        max: 5
+    }
+});
+
 let menuItems = [
     {
         "name": "Lökringar",
@@ -238,14 +293,21 @@ console.log(crypto.randomBytes(64).toString('hex'));
 
 const staffAcount = mongoose.model("staffAcount", staffAcountSchema);
 const menuItem = mongoose.model("menuItem", menuItemSchema);
+const oldMenuItem = mongoose.model("oldMenuItem", oldMenuItemSchema);
+const review = mongoose.model("review", reviewsSchema);
+
 
 resetDocuments();
 
 async function resetDocuments() {
-    const result = await staffAcount.deleteMany({});
-    console.log(result);
-    const r = await menuItem.deleteMany({});
-    console.log(r);
+    const result1 = await staffAcount.deleteMany({});
+    console.log(result1);
+    const result2 = await menuItem.deleteMany({});
+    console.log(result2);
+    const result3 = await oldMenuItem.deleteMany({});
+    console.log(result3);
+    const result4 = await review.deleteMany({});
+    console.log(result4);
 
     password = await bcrypt.hash("Password", 10);
     console.log(password);

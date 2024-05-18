@@ -173,7 +173,7 @@ app.post("/addtomenu", authenticateToken, async (req, res) => {
     try {
         const { user, name, cost, description, restrictions, menu, category } = req.body;
 
-        if (!name || !cost || !restrictions || !menu || !category) {
+        if (!user || !name || !cost || !restrictions || !menu || !category) {
             return res.status(400).json({ error: "Invalid input, send name, cost, restrictions, menu and category" })
         }
 
@@ -188,7 +188,7 @@ app.post("/addtomenu", authenticateToken, async (req, res) => {
             "whenAdded": new Date()
         }
 
-        let result = await menuItem.insertOne(item);
+        let result = await menuItem.create(item);
         return res.json(result);
     } catch (err) {
         return res.status(400).json(err);
@@ -227,25 +227,27 @@ app.delete("/removefrommenu", authenticateToken, async (req, res) => {
         const { user, name, cost, menu, category } = req.body;
         const item = await menuItem.find({ name: name, cost: cost, menu: menu, category: category });
 
-        if (item) {
+        if (item[0] != undefined) {
             const oldItem = {
-                "name": item.name,
-                "cost": item.cost,
-                "description": item.description,
-                "restrictions": item.restrictions,
-                "menu": item.menu,
-                "category": item.category,
+                "name": item[0].name,
+                "cost": item[0].cost,
+                "description": item[0].description,
+                "restrictions": item[0].restrictions,
+                "menu": item[0].menu,
+                "category": item[0].category,
                 "whoRemoved": user,
                 "whenRemoved": new Date()
             }
-            oldMenuItem.insertOne(oldItem)
-            let result = await menuItem.deleteOne(item);
+            await oldMenuItem.create(oldItem)
+            
+            let result = await menuItem.deleteOne({ _id: item[0]._id });
             return res.json(result);
         } else {
-            return res.status(404).json(err);
+            return res.status(404).json({ message: "Item not found on menu" });
         }
     } catch (err) {
-        return res.status(400).json(err);
+        // console.log(req.body);
+        return res.status(400).json({ message: "Invalid input, send user, name, cost, menu and category" });
     }
 })
 
@@ -254,23 +256,22 @@ app.put("/addbacktomenu", authenticateToken, async (req, res) => {
     try {
         const { user, name, cost, menu, category } = req.body;
         const oldItem = await oldMenuItem.find({ name: name, cost: cost, menu: menu, category: category });
-
-        if (oldItem) {
+        if (oldItem[0] != undefined) {
             const item = {
-                "name": oldItem.name,
-                "cost": oldItem.cost,
-                "description": oldItem.description,
-                "restrictions": oldItem.restrictions,
-                "menu": oldItem.menu,
-                "category": oldItem.category,
+                "name": oldItem[0].name,
+                "cost": oldItem[0].cost,
+                "description": oldItem[0].description,
+                "restrictions": oldItem[0].restrictions,
+                "menu": oldItem[0].menu,
+                "category": oldItem[0].category,
                 "whoAdded": user,
                 "whenAdded": new Date()
             }
-            menuItem.insertOne(item)
-            let result = await oldMenuItem.deleteOne(oldItem);
+            await menuItem.create(item)
+            let result = await oldMenuItem.deleteOne({ _id: oldItem[0]._id });
             return res.json(result);
         } else {
-            return res.status(404).json(err);
+            return res.status(404).json({ message: "Item not found on menu" });
         }
     } catch (err) {
         return res.status(400).json(err);
@@ -279,20 +280,24 @@ app.put("/addbacktomenu", authenticateToken, async (req, res) => {
 
 app.post("/postreview", async (req, res) => {
     try {
-        const { name, content, stars } = req.body;
+        let { name, content, stars } = req.body;
         if (!name || !content || !stars) {
-            return res.status(400).json({ error: "Invalid input, send name, content and stars" })
+            return res.status(400).json({ message: "Invalid input, send name, content and stars (1-5)" })
         }
+
+        // tar bort element taggar då detta är input från kund
+        name = name.replace(/(<([^>]+)>)/ig,'');
+        content = content.replace(/(<([^>]+)>)/ig,'');
         const newReview = {
             "name": name,
             "whenMade": new Date(),
             "content": content,
             "stars": stars
         }
-        let result = await review.insertOne(newReview);
+        let result = await review.create(newReview);
         return res.json(result);
     } catch (err) {
-        return res.status(400).json(err);
+        return res.status(400).json({ message: "Invalid input, send name, content and stars (1-5)" });
     }
 })
 
