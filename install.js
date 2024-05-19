@@ -279,6 +279,29 @@ let menuItems = [
     }
 ]
 
+let oldMenuItems = [
+    {
+        "name": "Calamares",
+        "cost": 59,
+        "description": "serveras med valfri dippsås",
+        "restrictions": [],
+        "menu": "Förrätter",
+        "category": "Friterat",
+        "whoRemoved": "Calle Alexanderson",
+        "whenRemoved": new Date()
+    },
+    {
+        "name": "Skagenröra toast",
+        "cost": 49,
+        "description": "",
+        "restrictions": ["dairy"],
+        "menu": "Förrätter",
+        "category": "Bröd",
+        "whoRemoved": "Calle Alexanderson",
+        "whenRemoved": new Date()
+    },
+]
+
 
 
 mongoose.connect(process.env.DATABASE).then(() => {
@@ -332,4 +355,5 @@ async function resetDocuments() {
     
     staffAcount.insertMany(staffAcounts)
     menuItem.insertMany(menuItems)
+    oldMenuItem.insertMany(oldMenuItems)
 }

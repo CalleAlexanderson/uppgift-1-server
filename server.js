@@ -137,6 +137,16 @@ app.get("/menu", async (req, res) => {
     }
 })
 
+app.get("/shelvedmenu", async (req, res) => {
+    try {
+        let result = await oldMenuItem.find({});
+
+        return res.json(result);
+    } catch (err) {
+        return res.status(500).json(err);
+    }
+})
+
 //logga in, använt samma kod som i labb 4 (anpassad)
 app.post("/login", async (req, res) => {
     try {
