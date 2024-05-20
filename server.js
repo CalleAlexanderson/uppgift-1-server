@@ -311,6 +311,16 @@ app.post("/postreview", async (req, res) => {
     }
 })
 
+app.get("/reviews", async (req, res) => {
+    try {
+        let result = await review.find({});
+
+        return res.json(result);
+    } catch (err) {
+        return res.status(500).json(err);
+    }
+})
+
 app.listen(port, () => {
     console.log("Server is listening");
 })
