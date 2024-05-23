@@ -130,7 +130,7 @@ let menuItems = [
     {
         "name": "Kyckling vingar",
         "cost": 49,
-        "description": "serveras med valfri dippsås",
+        "description": "täckta i någon av våra hemgjorda såser, buffalo, spicy-honey eller parmesan, serveras med valfri dippsås",
         "restrictions": [],
         "menu": "Förrätter",
         "category": "Friterat",
@@ -276,7 +276,308 @@ let menuItems = [
         "category": "dippsås",
         "whoAdded": "Calle Alexanderson",
         "whenAdded": new Date()
+    },
+    {
+        "name": "Surf N Turf",
+        "cost": 229,
+        "description": "140 gram oxfile serverat med tigerräkor",
+        "restrictions": ["fish"],
+        "menu": "Kött",
+        "category": "Nötkött",
+        "whoAdded": "Calle Alexanderson",
+        "whenAdded": new Date()
+    },
+    {
+        "name": "Bearnaise",
+        "cost": 9,
+        "description": "",
+        "restrictions": ["dairy"],
+        "menu": "Tillägg",
+        "category": "dippsås",
+        "whoAdded": "Calle Alexanderson",
+        "whenAdded": new Date()
+    },
+    {
+        "name": "Curry",
+        "cost": 9,
+        "description": "",
+        "restrictions": ["vegan"],
+        "menu": "Tillägg",
+        "category": "dippsås",
+        "whoAdded": "Calle Alexanderson",
+        "whenAdded": new Date()
+    },
+    {
+        "name": "Sötsur",
+        "cost": 9,
+        "description": "",
+        "restrictions": ["vegan"],
+        "menu": "Tillägg",
+        "category": "dippsås",
+        "whoAdded": "Calle Alexanderson",
+        "whenAdded": new Date()
+    },
+    {
+        "name": "Vitlök",
+        "cost": 9,
+        "description": "",
+        "restrictions": ["vegan"],
+        "menu": "Tillägg",
+        "category": "dippsås",
+        "whoAdded": "Calle Alexanderson",
+        "whenAdded": new Date()
+    },
+    {
+        "name": "Hot chili",
+        "cost": 9,
+        "description": "",
+        "restrictions": ["vegan"],
+        "menu": "Tillägg",
+        "category": "dippsås",
+        "whoAdded": "Calle Alexanderson",
+        "whenAdded": new Date()
+    },
+    {
+        "name": "Cheddar",
+        "cost": 9,
+        "description": "",
+        "restrictions": [],
+        "menu": "Tillägg",
+        "category": "dippsås",
+        "whoAdded": "Calle Alexanderson",
+        "whenAdded": new Date()
+    },
+    {
+        "name": "Chicharon",
+        "cost": 89,
+        "description": "gjord på sidkött",
+        "restrictions": ["pork"],
+        "menu": "Kött",
+        "category": "Fläskkött",
+        "whoAdded": "Calle Alexanderson",
+        "whenAdded": new Date()
+    },
+    {
+        "name": "Lamm innerfilé",
+        "cost": 189,
+        "description": "serveras med saffransris",
+        "restrictions": [],
+        "menu": "Kött",
+        "category": "Lammkött",
+        "whoAdded": "Calle Alexanderson",
+        "whenAdded": new Date()
+    },
+    {
+        "name": "Rökt bog",
+        "cost": 169,
+        "description": "serveras med saffransris",
+        "restrictions": ["pork"],
+        "menu": "Kött",
+        "category": "Fläskkött",
+        "whoAdded": "Calle Alexanderson",
+        "whenAdded": new Date()
+    },
+    {
+        "name": "Fläskkarré",
+        "cost": 149,
+        "description": "serveras med potatisklyftor och bearnaise",
+        "restrictions": ["pork"],
+        "menu": "Kött",
+        "category": "Fläskkött",
+        "whoAdded": "Calle Alexanderson",
+        "whenAdded": new Date()
+    },
+    {
+        "name": "Entrecôte",
+        "cost": 199,
+        "description": "serveras med potatisklyftor och bearnaise",
+        "restrictions": [],
+        "menu": "Kött",
+        "category": "Nötkött",
+        "whoAdded": "Calle Alexanderson",
+        "whenAdded": new Date()
+    },
+    {
+        "name": "Bringa",
+        "cost": 209,
+        "description": "serveras med potatisklyftor  och bearnaise",
+        "restrictions": [],
+        "menu": "Kött",
+        "category": "Nötkött",
+        "whoAdded": "Calle Alexanderson",
+        "whenAdded": new Date()
+    },
+    {
+        "name": "Ryggbiff",
+        "cost": 179,
+        "description": "serveras med potatisklyftor  och bearnaise",
+        "restrictions": [],
+        "menu": "Kött",
+        "category": "Nötkött",
+        "whoAdded": "Calle Alexanderson",
+        "whenAdded": new Date()
+    },
+    {
+        "name": "T-bone-steak",
+        "cost": 249,
+        "description": "serveras med potatisklyftor och bearnaise",
+        "restrictions": [],
+        "menu": "Kött",
+        "category": "Nötkött",
+        "whoAdded": "Calle Alexanderson",
+        "whenAdded": new Date()
+    },
+    {
+        "name": "Spare ribs",
+        "cost": 149,
+        "description": "täckt med barbeque rub",
+        "restrictions": ["pork"],
+        "menu": "Ribs",
+        "category": "Fläskkött",
+        "whoAdded": "Calle Alexanderson",
+        "whenAdded": new Date()
+    },
+    {
+        "name": "Lamm revben",
+        "cost": 149,
+        "description": "täckt med barbeque rub",
+        "restrictions": [],
+        "menu": "Ribs",
+        "category": "Lammkött",
+        "whoAdded": "Calle Alexanderson",
+        "whenAdded": new Date()
+    },
+    {
+        "name": "Kamben",
+        "cost": 159,
+        "description": "täckt med spicy-honey rub",
+        "restrictions": ["pork"],
+        "menu": "Ribs",
+        "category": "Fläskkött",
+        "whoAdded": "Calle Alexanderson",
+        "whenAdded": new Date()
+    },
+    {
+        "name": "Tonfisk",
+        "cost": 159,
+        "description": "serveras med potatisklyftor och bearnaise",
+        "restrictions": ["fisk"],
+        "menu": "Fisk",
+        "category": "Fisk",
+        "whoAdded": "Calle Alexanderson",
+        "whenAdded": new Date()
+    },
+    {
+        "name": "Hummer",
+        "cost": 289,
+        "description": "injicerad med smörsås, serveras med potatisklyftor och bearnaise",
+        "restrictions": ["fisk"],
+        "menu": "Fisk",
+        "category": "Skaldjur",
+        "whoAdded": "Calle Alexanderson",
+        "whenAdded": new Date()
+    },
+    {
+        "name": "Biggie",
+        "cost": 229,
+        "description": "180g högrevsburgare, karamelliserad lök, cheddarost, saltgurka, tomat, sallad och husets egna dressing, serveras med pommes frites",
+        "restrictions": [],
+        "menu": "Burgare",
+        "category": "Nötkött",
+        "whoAdded": "Calle Alexanderson",
+        "whenAdded": new Date()
+    },
+    {
+        "name": "Club sandwhich",
+        "cost": 179,
+        "description": "grillad kycklingbröst, gurka, tomat, sallad och husets egna dressing, serveras med pommes frites",
+        "restrictions": [],
+        "menu": "Burgare",
+        "category": "Kyckling",
+        "whoAdded": "Calle Alexanderson",
+        "whenAdded": new Date()
+    },
+    {
+        "name": "Halloumi burger",
+        "cost": 179,
+        "description": "grillad halloumi, rödlök, saltgurka, sallad och husets egna dressing, serveras med pommes frites",
+        "restrictions": ["vegan"],
+        "menu": "Burgare",
+        "category": "Vegansk",
+        "whoAdded": "Calle Alexanderson",
+        "whenAdded": new Date()
+    },
+    {
+        "name": "Panpizza",
+        "cost": 99,
+        "description": "pepperoni, mozarella och rödlök",
+        "restrictions": [],
+        "menu": "Barnmeny",
+        "category": "Pizza",
+        "whoAdded": "Calle Alexanderson",
+        "whenAdded": new Date()
+    },
+    {
+        "name": "Biggie small",
+        "cost": 139,
+        "description": "90g högrevsburgare, karamelliserad lök, cheddarost, saltgurka, tomat, sallad och husets egna dressing, serveras med pommes frites",
+        "restrictions": [],
+        "menu": "Barnmeny",
+        "category": "Burgare",
+        "whoAdded": "Calle Alexanderson",
+        "whenAdded": new Date()
+    },
+    {
+        "name": "Fullhouse",
+        "cost": 899,
+        "description": "chicharon, spare ribs, t-bone-steak och bringa ",
+        "restrictions": ["pork"],
+        "menu": "Combo_Tallrickar",
+        "category": "Kött",
+        "whoAdded": "Calle Alexanderson",
+        "whenAdded": new Date()
+    },
+    {
+        "name": "Waves",
+        "cost": 449,
+        "description": "tonfisk, tigerräkor och hummer",
+        "restrictions": ["fisk"],
+        "menu": "Combo_Tallrickar",
+        "category": "Fisk",
+        "whoAdded": "Calle Alexanderson",
+        "whenAdded": new Date()
+    },
+    {
+        "name": "Coca-cola",
+        "cost": 29,
+        "description": "",
+        "restrictions": [],
+        "menu": "Drickor",
+        "category": "Läsk",
+        "whoAdded": "Calle Alexanderson",
+        "whenAdded": new Date()
+    },
+    {
+        "name": "Tokara",
+        "cost": 299,
+        "description": "",
+        "restrictions": [],
+        "menu": "Drickor",
+        "category": "Vin",
+        "whoAdded": "Calle Alexanderson",
+        "whenAdded": new Date()
+    },
+    {
+        "name": "Negroni",
+        "cost": 59,
+        "description": "",
+        "restrictions": [],
+        "menu": "Drickor",
+        "category": "Cocktails",
+        "whoAdded": "Calle Alexanderson",
+        "whenAdded": new Date()
     }
+
 ]
 
 let oldMenuItems = [
