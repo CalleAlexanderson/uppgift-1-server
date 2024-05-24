@@ -121,7 +121,7 @@ let menuItems = [
         "name": "Mozarella sticks",
         "cost": 39,
         "description": "",
-        "restrictions": ["dairy", "vegan"],
+        "restrictions": ["dairy"],
         "menu": "Förrätter",
         "category": "Friterat",
         "whoAdded": "Calle Alexanderson",
