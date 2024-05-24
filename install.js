@@ -603,6 +603,26 @@ let oldMenuItems = [
     },
 ]
 
+let reviews = [
+    {
+        "name": "Calle Alexanderson",
+        "whenMade": new Date,
+        "content": "Kyckligen var god",
+        "stars": 4
+    },
+    {
+        "name": "Julius Sköld",
+        "whenMade": new Date,
+        "content": "Alldeles för lite bearnaise",
+        "stars": 1
+    },
+    {
+        "name": "Linus Kindbom",
+        "whenMade": new Date,
+        "content": "För lite kött",
+        "stars": 3
+    }
+]
 
 
 mongoose.connect(process.env.DATABASE).then(() => {
@@ -657,4 +677,5 @@ async function resetDocuments() {
     staffAcount.insertMany(staffAcounts)
     menuItem.insertMany(menuItems)
     oldMenuItem.insertMany(oldMenuItems)
+    review.insertMany(reviews)
 }
